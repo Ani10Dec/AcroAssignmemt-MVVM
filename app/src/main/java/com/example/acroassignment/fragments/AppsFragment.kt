@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.acroassignment.R
 import com.example.acroassignment.adapter.AppAdapter
@@ -15,16 +14,13 @@ import com.example.acroassignment.model.AppsModel.Apps
 import com.example.acroassignment.repository.retrofit.ApiServices
 import com.example.acroassignment.repository.retrofit.RetrofitInstance
 import com.example.acroassignment.utils.AppHelper
-import com.example.acroassignment.viewmodel.AppsViewModel
 
 class AppsFragment : Fragment() {
 
     lateinit var binding: FragmentAppsBinding
-    lateinit var viewModel: AppsViewModel
     lateinit var adapter: AppAdapter
     private lateinit var apiServices: ApiServices
     private val appList: ArrayList<Apps> = ArrayList()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +35,6 @@ class AppsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         apiServices =
             RetrofitInstance.getMovieRetrofitInstance().create(ApiServices::class.java)
-        viewModel = ViewModelProvider(this).get(AppsViewModel::class.java)
-        binding.viewModel = viewModel
         binding.lifecycleOwner = this
         AppHelper.showProgressBar(requireContext())
         setUpAppsRecyclerView()

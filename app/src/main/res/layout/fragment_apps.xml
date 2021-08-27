@@ -5,9 +5,7 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.example.acroassignment.viewmodel.AppsViewModel" />
+
 
     </data>
 
